@@ -1,3 +1,4 @@
+## Entornos virtuales
 Vamos a desarrollar todo el proyecto utilizando un entorno virtual, que instalamos usando pip. El gestor de entornos virtuales que usaremos será virtualenvwrapper.
 Para ello, instalamos virtualenv con pip:
 ![Captura: instalando virtualenv](./assets/Instalando%20virtualenv.png)
@@ -11,3 +12,9 @@ Para asegurarme de que los comandos de virtualenvwrapper están disponibles siem
 Ahora creo el entorno virtual en el que voy a trabajar con la orden `mkvirtualenv nombre`, yo usaré "entornoF1":
 ![Captura: creando entorno virtual](./assets/Creando%20virtual%20env.png)
 Entramos a trabajar en el entorno con la orden `workon entornoF1` y salimos del mismo con la orden `deactivate`.
+
+##Python
+Para atacar a la API, según su documentación, hay que utilizar un método GET y una URL que dependerá de lo que queremos pedir. Para construir la URL en nuestro programa, utilizaremos con Python las llamadas "f-strings", que utilizan la siguiente sintaxis:
+`variable = f'texto_que_no_varía_{valor1}_no_varía_{valor2}`
+Python interpreta ahí la cadena entre comillas simples, sustituyendo los valores entre llaves por lo que valgan las variales contenidas por las mismas. Si tenemos las dos variables valor1=1 y valor2=2, la cadena anterior sería:
+`variable = "texto_que_no_varía_1_no_varía_2"`
