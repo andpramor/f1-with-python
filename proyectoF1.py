@@ -12,8 +12,9 @@ if peticion.status_code == 200:    #La respuesta 200 es el OK, otro número ser�
     conductores = []
 
     for conductor in datos["MRData"]["DriverTable"]["Drivers"]:    #En "conductores" guardo la parte que me interesa del JSON anterior.
-        conductores.append({'id':conductor['driverId'],'nombre':conductor['givenName']})
+        conductores.append({'id':conductor['driverId'],'nombre':conductor['givenName'],'apellidos':conductor['familyName']})
     #Pruebo a mostrar el diccionario que acabo de crear:
+    print('Prueba de impresión del diccionario en el que guardo nombre, apellidos e id de los pilotos:')
     print(conductores)
 else:
     print("La solicitud GET no ha funcionado. API inalcanzable.")

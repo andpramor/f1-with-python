@@ -23,3 +23,5 @@ Para atacar a la API, según su documentación, hay que utilizar un método GET 
 `variable = f'texto_que_no_varía_{valor1}_no_varía_{valor2}`
 Python interpreta ahí la cadena entre comillas simples, sustituyendo los valores entre llaves por lo que valgan las variales contenidas por las mismas. Si tenemos las dos variables valor1=1 y valor2=2, la cadena anterior sería:
 `variable = "texto_que_no_varía_1_no_varía_2"`
+Por ahora, conseguimos un diccionario con el id, el nombre y los apellidos de los pilotos de la temporada dada (2022):
+![Captura: prueba impresión de los pilotos](./assets/Prueba%20pilotos.png)
