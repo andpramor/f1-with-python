@@ -21,3 +21,8 @@ if peticion.status_code == 200:
         print(f"Nombre: {nombre}, ID: {id}.\n")
 else:
     print("La solicitud GET no ha funcionado. API inalcanzable.")
+
+# IDEAS:
+# Juego de preguntas: ¿Cuántas carreras ha ganado en el año 2022 el piloto aleatorio que te dé? Te saco un nombre completo por pantalla y te pregunto, tú como usuario respondes, y yo compruebo.
+# Puedo montarme mi propio JSON recorriendo todas las carreras del año, y anotando en cada piloto el número de victorias.
+# Al final del juego, muestro por pantalla los pilotos que hayan ganado alguna carrera en 2022, junto con el número de carreras que hayan ganado, ordenados de más a menos victorias.
