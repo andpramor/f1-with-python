@@ -1,12 +1,17 @@
 #!/usr/bin/python3
 
-import json, requests    #Importo el módulo para trabajar con JSON y el módulo para hacer peticiones a APIs online.
+import json, requests, random    #Importo el módulo para trabajar con JSON, el módulo requests para hacer peticiones a APIs online y random para generar números aleatorios, que usaré para elegir el año de cada ronda del juego.
 
-url = "http://ergast.com/api/f1/2022/drivers.json"    #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
+temporada = random.randint(1950, 2022) #Los mundiales empezaron en 1950, la API puede devolver información desde su inicio, así que elegiré el año entre ese y el pasado, de forma que sea el año que sea, la temporada esté completa.
+
+url = f"http://ergast.com/api/f1/{temporada}/drivers.json"    #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
 
 peticion = requests.get(url)    #Solicitud GET a la API.
 
 if peticion.status_code == 200:    #La respuesta 200 es el OK, otro número sería un error en la respuesta de la API.
+
+    print(f'El año elegido por el aleatorio ha sido {temporada}')
+    
     datos = peticion.json()    #Guardo en "datos" todo el JSON que me da la API.
 
     conductores = []
@@ -20,7 +25,6 @@ else:
     print("La solicitud GET no ha funcionado. API inalcanzable.")
 
 # IDEAS:
-# Juego de preguntas: ¿Cuántas carreras ha ganado en el año 2022 el piloto aleatorio que te dé? Te saco un nombre completo por pantalla y te pregunto, tú como usuario respondes, y yo compruebo.
-# Al principio, se pide número de jugadores y el nombre de cada jugador. Se hacen tres preguntas por jugador. Al final, sacar las respuestas de cada jugador y las correctas.
+# Juego de preguntas: Dos jugadores, tres rondas. Cada ronda, un año aleatorio para cada jugador, se dice el número de carreras del año, el número de pilotos, y se saca cada piloto preguntando el número de victorias. Al final, se saca una lista con los pilotos, la guess del usuario y el número real de vicotorias. Se cuentan los aciertos y se decide el ganador. +3 ronda ganada, +1 a ambos en caso de empate.
 # Puedo montarme mi propio JSON recorriendo todas las carreras del año, y anotando en cada piloto el número de victorias.
-# Sacar un pdf con los resultados, respuestas de cada jugador, y tabla con los pilotos que hayan ganado alguna carrera en 2022, junto con el número de carreras que hayan ganado, ordenados de más a menos victorias.
+# Jodido que a esto me de tiempo, Sacar un pdf con los resultados, respuestas de cada jugador, y tabla con los pilotos que hayan ganado alguna carrera en 2022, junto con el número de carreras que hayan ganado, ordenados de más a menos victorias.
