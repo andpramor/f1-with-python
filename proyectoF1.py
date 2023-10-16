@@ -11,16 +11,21 @@ peticion = requests.get(url)    #Solicitud GET a la API.
 if peticion.status_code == 200:    #La respuesta 200 es el OK, otro número sería un error en la respuesta de la API.
 
     print(f'El año elegido por el aleatorio ha sido {temporada}')
-    
+
     datos = peticion.json()    #Guardo en "datos" todo el JSON que me da la API.
 
-    conductores = []
+#Que datos sea una variable global bien en principio, pero la lista de conductores debería construirla en una función, y el número de carreras contarlo en otra.
+
+
+
+
+    conductores = [] #Voy a crear en conductores un diccionario con los elementos que me interesan de todo el JSON que devuelve la API.
 
     for conductor in datos["MRData"]["DriverTable"]["Drivers"]:    #En "conductores" guardo la parte que me interesa del JSON anterior.
         conductores.append({'id':conductor['driverId'],'nombre':conductor['givenName'],'apellidos':conductor['familyName']})
-    #Pruebo a mostrar el diccionario que acabo de crear:
-    print('Prueba de impresión del diccionario en el que guardo nombre, apellidos e id de los pilotos:')
-    print(conductores)
+    
+    for conductor in conductores:
+        print(conductor['id'])
 else:
     print("La solicitud GET no ha funcionado. API inalcanzable.")
 
