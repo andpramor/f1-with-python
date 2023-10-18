@@ -16,7 +16,7 @@ Para asegurarme de que los comandos de virtualenvwrapper están disponibles siem
 Ahora creo el entorno virtual en el que voy a trabajar con la orden `mkvirtualenv nombre`, yo usaré "entornoF1":
 ![Captura: creando entorno virtual](./assets/Creando%20virtual%20env.png)
 
-Entramos a trabajar en el entorno con la orden `workon entornoF1` y salimos del mismo con la orden `deactivate`.
+Entramos a trabajar en el entorno con la orden `workon entornoF1` y salimos del mismo con la orden `deactivate`. Importante también trabajar con el intérprete del entorno en visual studio code.
 
 ## Python
 Para atacar a la API, según su documentación, hay que utilizar un método GET y una URL que dependerá de lo que queremos pedir. Para construir la URL en nuestro programa, utilizaremos con Python las llamadas "f-strings", que utilizan la siguiente sintaxis:

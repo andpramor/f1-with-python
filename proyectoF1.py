@@ -1,35 +1,38 @@
 #!/usr/bin/python3
 
-import json, requests, random    #Importo el módulo para trabajar con JSON, el módulo requests para hacer peticiones a APIs online y random para generar números aleatorios, que usaré para elegir el año de cada ronda del juego.
+import json, requests #Importo el módulo para trabajar con JSON y el módulo requests para hacer peticiones a APIs online.
 
-temporada = random.randint(1950, 2022) #Los mundiales empezaron en 1950, la API puede devolver información desde su inicio, así que elegiré el año entre ese y el pasado, de forma que sea el año que sea, la temporada esté completa.
+def tryApi(estado): #La respuesta 200 es el OK de la API, otro número sería un error en la respuesta.
+    if estado == 200:
+        return True
+    print('Algo ha ido mal, la solicitud de datos a la API no ha funcionado, podría estar offline.')
+    return False
 
-url = f"http://ergast.com/api/f1/{temporada}/drivers.json"    #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
+def getDrivers():
+    season = int(input('¿De qué año te interesa conocer la tabla de victorias? '))
+    print('')
+    if season < 1950:
+        print('Demasiado atrás en el tiempo, los mundiales de Fórmula 1 comenzaron en el año 1950. Volvamos a intentarlo.')
+        getDrivers()
+    elif season > 2023:
+        print('Te has pasado, ¡no puedo ver el futuro! Volvamos a intentarlo.')
+        getDrivers()
+    else:
+        url = f"http://ergast.com/api/f1/{season}/drivers.json" #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
+        peticion = requests.get(url)    #Solicitud GET a la API.
+        if tryApi(peticion.status_code):
+            datos = peticion.json()    #Guardo en "datos" todo el JSON que me da la API.
+            conductores = [] #Voy a crear en conductores un diccionario con los elementos que me interesan de todo el JSON que devuelve la API.
 
-peticion = requests.get(url)    #Solicitud GET a la API.
+            for conductor in datos["MRData"]["DriverTable"]["Drivers"]:    #En "conductores" guardo la parte que me interesa del JSON anterior.
+                conductores.append({'id':conductor['driverId'],'nombre':conductor['givenName'],'apellidos':conductor['familyName']})
+            return conductores
 
-if peticion.status_code == 200:    #La respuesta 200 es el OK, otro número sería un error en la respuesta de la API.
-
-    print(f'El año elegido por el aleatorio ha sido {temporada}')
-
-    datos = peticion.json()    #Guardo en "datos" todo el JSON que me da la API.
-
-#Que datos sea una variable global bien en principio, pero la lista de conductores debería construirla en una función, y el número de carreras contarlo en otra.
+print('Bienvenido al contador de victorias de Fórmula 1.')
+conductoresDelAño = getDrivers()
 
 
 
-
-    conductores = [] #Voy a crear en conductores un diccionario con los elementos que me interesan de todo el JSON que devuelve la API.
-
-    for conductor in datos["MRData"]["DriverTable"]["Drivers"]:    #En "conductores" guardo la parte que me interesa del JSON anterior.
-        conductores.append({'id':conductor['driverId'],'nombre':conductor['givenName'],'apellidos':conductor['familyName']})
-    
-    for conductor in conductores:
-        print(conductor['id'])
-else:
-    print("La solicitud GET no ha funcionado. API inalcanzable.")
-
-# IDEAS:
-# Juego de preguntas: Dos jugadores, tres rondas. Cada ronda, un año aleatorio para cada jugador, se dice el número de carreras del año, el número de pilotos, y se saca cada piloto preguntando el número de victorias. Al final, se saca una lista con los pilotos, la guess del usuario y el número real de vicotorias. Se cuentan los aciertos y se decide el ganador. +3 ronda ganada, +1 a ambos en caso de empate.
-# Puedo montarme mi propio JSON recorriendo todas las carreras del año, y anotando en cada piloto el número de victorias.
-# Jodido que a esto me de tiempo, Sacar un pdf con los resultados, respuestas de cada jugador, y tabla con los pilotos que hayan ganado alguna carrera en 2022, junto con el número de carreras que hayan ganado, ordenados de más a menos victorias.
+print('Los conductores de ese año fueron:')
+for conductor in conductoresDelAño:
+    print(conductor['id'])
