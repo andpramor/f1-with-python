@@ -1,4 +1,4 @@
-<p align="center">![Imagen](./assets/icon.png)</p>
+<p align="center">![Imagen](/assets/icon.png)</p>
 <h1 align="center">Fórmula 1. Un contador de victorias</h1>
 
 Utilizaremos la API [Ergast](http://ergast.com/mrd/), una API gratuita que devuelve datos de los mundiales de Fórmula 1 desde los inicios del campeonato en el 1950.
