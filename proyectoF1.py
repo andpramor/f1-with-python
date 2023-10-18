@@ -37,17 +37,27 @@ def getWins(conductor,año):
         for carrera in datos['MRData']['RaceTable']['Races']:
             posicion = carrera['Results'][0]['position']
             posiciones.append(posicion)
-        print(f'Posiciones de {conductor}:')
-        print(posiciones)
+        #Aquí comprobaba que la lista de posiciones se estuviera llenando
+        #print(f'Posiciones de {conductor}:')
+        #print(posiciones)
+        victorias = 0
+        for posicion in posiciones:
+            if posicion == '1':
+                victorias+=1
+        return victorias
+
 
 print('Bienvenido al contador de victorias de Fórmula 1.')
 año = int(input('¿De qué año te interesa conocer la tabla de victorias? '))
 conductoresDelAño = getDrivers(año)
-# getWins('alonso',2008) Probé con alonso 2020 y fue el mayor problema.
 
+#getWins('alonso',2008) Probé con alonso 2020 y fue el mayor problema!!
 
-#for conductor in conductoresDelAño: #Para cada conductor, cuento sus victorias y las meto en un diccionario, luego lo ordenaré.
-#    getWins(conductor['id'],año)
+conductoresVictorias =  [] #Diccionario donde meteré nombre y apellidos de los conductores, y su número de victorias.
 
-#Voy a sacar la tabla de victorias como Nombre, Apellidos, Nº de victorias
+for conductor in conductoresDelAño:
+    conductoresVictorias.append({'Nombre':conductor['nombre'],'Apellidos':conductor['apellidos'],'Victorias':getWins(conductor['id'],año)})
+
+print(conductoresVictorias)
+    
 #Ordenado de más victorias a menos, y cuando llegue a los pilotos sin ninguna victoria, ordenados alfabéticamente.
