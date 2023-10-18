@@ -45,6 +45,9 @@ def getWins(conductor,año):
             if posicion == '1':
                 victorias+=1
         return victorias
+    
+def numVictorias(conductor):
+    return conductor['Victorias']
 
 
 print('Bienvenido al contador de victorias de Fórmula 1.')
@@ -58,6 +61,9 @@ conductoresVictorias =  [] #Diccionario donde meteré nombre y apellidos de los 
 for conductor in conductoresDelAño:
     conductoresVictorias.append({'Nombre':conductor['nombre'],'Apellidos':conductor['apellidos'],'Victorias':getWins(conductor['id'],año)})
 
-print(conductoresVictorias)
-    
-#Ordenado de más victorias a menos, y cuando llegue a los pilotos sin ninguna victoria, ordenados alfabéticamente.
+#Aquí ya tengo conductores y victorias de los mismos, ahora reordeno el diccionario utilizando como clave de ordenación el campo victorias:
+
+conductoresVictorias.sort(key=numVictorias, reverse=True) #Sort necesita una función como key, no le sirve poner key='Victorias'. Reverse porque quiero de más victorias a menos. Ya ordenados por número de victorias, saco por pantalla la tabla de victorias:
+print('Nombre:\t\tApellidos:\t\tNúmero de victorias:')
+for conductor in conductoresVictorias:
+    print(f"{conductor['Nombre']}\t\t{conductor['Apellidos']}\t\t{conductor['Victorias']}")
