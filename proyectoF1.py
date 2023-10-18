@@ -8,15 +8,15 @@ def pruebaApi(estado): #La respuesta 200 es el OK de la API, otro número sería
     print('Algo ha ido mal, la solicitud de datos a la API no ha funcionado, podría estar offline.')
     return False
 
-def getConductores(season):
-    if season < 1950:
+def getConductores(temporada):
+    if temporada < 1950:
         print('Demasiado atrás en el tiempo, los mundiales de Fórmula 1 comenzaron en el año 1950. Volvamos a intentarlo.')
         getConductores()
-    elif season > 2023:
+    elif temporada > 2023:
         print('Te has pasado, ¡no puedo ver el futuro! Volvamos a intentarlo.')
         getConductores()
     else:
-        url = f"http://ergast.com/api/f1/{season}/drivers.json" #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
+        url = f"http://ergast.com/api/f1/{temporada}/drivers.json" #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
         peticion = requests.get(url)    #Solicitud GET a la API.
         if pruebaApi(peticion.status_code):
             datos = peticion.json()    #Guardo en "datos" todo el JSON que me da la API.
