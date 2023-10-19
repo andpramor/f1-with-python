@@ -23,4 +23,4 @@ Hecho esto, vamos en una terminal a la carpeta en la que hayamos guardado los ar
 </p>
 
 <h2 align="center">Demostración</h2>
-Enlace al ![vídeo demostrativo](https://drive.google.com/file/d/1cxfKHXlstdx_OILqTgFAD4IefoMx6M7R/view?usp=share_link).
+Enlace al [vídeo demostrativo](https://drive.google.com/file/d/1cxfKHXlstdx_OILqTgFAD4IefoMx6M7R/view?usp=share_link).
