@@ -9,8 +9,18 @@ Utilizaremos la API [Ergast](http://ergast.com/mrd/), una API gratuita que devue
 Muy sencillo, en cuanto el programa se ejecuta, se le pide al usuario por terminal sobre qué año quiere consultar la tabla de victorias.
 Basta con introducir un año entre el 1950 y el actual para ver una relación ordenada del nombre y apellidos de los pilotos que participaron en la edición del mundial de Fórmula 1 del año introducido por el usuario junto al número de victorias de cada piloto.
 
-<h2 align="center"> Instalación </h2>
-Prerrequisitos:
+<h2 align="center">Instalación</h2>
+<h3 align="center">Prerrequisitos</h3>
 - Python 3.10.12.
-- Pip 23.3.
-Una vez tenemos ambos, clonamos el repositorio. Hecho esto, vamos en una terminal a la carpeta en la que hayamos guardado los archivos del repositorio y ejecutamos el comando pip install -r requirements.txt para instalar los paquetes requeridos para el funcionamiento del programa, listados en dicho archivo .txt.
+<h3 align="center">Pasos para instalar</h3>
+Hecho esto, vamos en una terminal a la carpeta en la que hayamos guardado los archivos del repositorio y ejecutamos el comando pip install -r requirements.txt para instalar los paquetes requeridos para el funcionamiento del programa, listados en dicho archivo .txt.
+<p align="center">
+    <ol>
+        <li>Clonar el repositorio.</li>
+        <li>Actualizar pip con el comando `python3 -m pip install --upgrade pip`.</li>
+        <li>En una terminal, ir a la carpeta donde se ha clonado el repositorio y ejecutar el comando `pip install -r requirements.txt` para instalar las dependencias.</li>
+    </ol>
+</p>
+
+<h2 align="center">Demostración</h2>
+Enlace al ![vídeo demostrativo](https://drive.google.com/file/d/1cxfKHXlstdx_OILqTgFAD4IefoMx6M7R/view?usp=share_link).
