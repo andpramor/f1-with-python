@@ -11,10 +11,12 @@ def pruebaApi(estado): #La respuesta 200 es el OK de la API, otro número sería
 def getConductores(temporada):
     if temporada < 1950:
         print('Demasiado atrás en el tiempo, los mundiales de Fórmula 1 comenzaron en el año 1950. Volvamos a intentarlo.')
-        getConductores()
+        año = int(input('¿De qué año te interesa conocer la tabla de victorias?\n'))
+        getConductores(año)
     elif temporada > 2023:
         print('Te has pasado, ¡no puedo ver el futuro! Volvamos a intentarlo.')
-        getConductores()
+        año = int(input('¿De qué año te interesa conocer la tabla de victorias?\n'))
+        getConductores(año)
     else:
         url = f"http://ergast.com/api/f1/{temporada}/drivers.json" #Acabo las URL con ".json" porque la API devuelve formato XML por defecto.
         peticion = requests.get(url)    #Solicitud GET a la API.
