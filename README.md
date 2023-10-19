@@ -13,6 +13,7 @@ Basta con introducir un año entre el 1950 y el actual para ver una relación or
 <h2 align="center">Instalación</h2>
 <h3 align="center">Prerrequisitos</h3>
 - Python 3.10.12.
+- Pip 23.3.
 <h3 align="center">Pasos para instalar</h3>
 Hecho esto, vamos en una terminal a la carpeta en la que hayamos guardado los archivos del repositorio y ejecutamos el comando pip install -r requirements.txt para instalar los paquetes requeridos para el funcionamiento del programa, listados en dicho archivo .txt.
 <p align="center">
