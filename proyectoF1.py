@@ -13,7 +13,7 @@ def getConductores(temporada):
     peticion = requests.get(url)    #Solicitud GET a la API.
     if pruebaApi(peticion.status_code):
         datos = peticion.json()    #Guardo en "datos" todo el JSON que me da la API.
-        conductores = [] #Voy a crear en conductores un diccionario con los elementos que me interesan de todo el JSON que devuelve la API.
+        conductores = [] #Aquí guardo sólo los elementos que me interesan de todo el JSON que devuelve la API.
 
         for conductor in datos["MRData"]["DriverTable"]["Drivers"]:    #En "conductores" guardo la parte que me interesa del JSON anterior.
             conductores.append({'id':conductor['driverId'],'nombre':conductor['givenName'],'apellidos':conductor['familyName']})
@@ -24,7 +24,7 @@ def getVictorias(conductor,año):
     peticion = requests.get(url)
     if pruebaApi(peticion.status_code):
         datos = peticion.json()
-        posiciones = [] #En esta lista guardaré todas las posiciones en las que ha quedado, luego contaré el número de veces que sale el 1.
+        posiciones = [] #Aquí guardaré todas las posiciones en las que ha quedado, luego contaré el número de veces que sale el 1.
         for carrera in datos['MRData']['RaceTable']['Races']:
             posicion = carrera['Results'][0]['position']
             posiciones.append(posicion)
@@ -49,15 +49,14 @@ else:
 
     #getWins('alonso',2008) Probé con alonso 2020 y fue el mayor problema!!
 
-    conductoresVictorias =  [] #Diccionario donde meteré nombre y apellidos de los conductores, y su número de victorias.
+    conductoresVictorias =  [] #Aquí meteré nombre y apellidos de los conductores, y su número de victorias.
     for conductor in conductoresDelAño:
         conductoresVictorias.append({'Nombre':conductor['nombre'],'Apellidos':conductor['apellidos'],'Victorias':getVictorias(conductor['id'],año)})
 
-    #Aquí ya tengo conductores y victorias de los mismos, ahora reordeno el diccionario utilizando como clave de ordenación el campo victorias:
+    #Aquí ya tengo conductores y victorias de los mismos, ahora lo reordeno utilizando como clave de ordenación el campo victorias:
 
     conductoresVictorias.sort(key=numVictorias, reverse=True) #Sort necesita una función como key, no le sirve poner key='Victorias'. Reverse porque quiero de más victorias a menos. Ya ordenados por número de victorias, saco por pantalla la tabla de victorias:
 
-    #print('Nombre:\t|\tApellidos:\t|\tNúmero de victorias:')
     cabecera = {'Nombre':'Nombre:','Apellidos':'Apellidos:','Victorias':'Victorias:'}
     conductoresVictorias.insert(0,cabecera) #Añado al principio de la lista la cabecera.
     for conductor in conductoresVictorias:
